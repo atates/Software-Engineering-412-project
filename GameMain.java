@@ -1,10 +1,4 @@
-/**
- 
- *
- * Program Plays a Whack-a-Mole style game via a GUI. Relies upon the Creature sub-class of JButton to facilitate the interaction between the player and 
- * the moles, called creatures in the code for re-usability. The game offers the user the option to play again or end the program after each attempt to beat the game. 
- * 
- */
+
 
 import javax.swing.*;
 
@@ -258,16 +252,16 @@ System.exit(0);
 		choice1 = new JButton( "Play Wack-a-Mole" );
 		choice1.setBackground(Color.green);
 		choice1.setForeground(Color.red);
-		choice1.setFont(smallFont);
+		choice1.setFont(normalFont);
 		choiceButtonPanel.add(choice1);
 		choice1.setFocusPainted(false);
 		choice1.addActionListener(choiceHandler);
 		choice1.setActionCommand("c1");
 		
-		choice2 = new JButton("Play Ride Times Conversion");
+		choice2 = new JButton("Play Ride Times");
 		choice2.setBackground(Color.yellow);
 		choice2.setForeground(Color.blue);
-		choice2.setFont(smallFont);
+		choice2.setFont(normalFont);
 		choiceButtonPanel.add(choice2);
 		choice2.setFocusPainted(false);
 		choice2.addActionListener(choiceHandler);
@@ -276,7 +270,7 @@ System.exit(0);
 		choice3 = new JButton("View statistics");
 		choice3.setBackground(Color.red);
 		choice3.setForeground(Color.yellow);
-		choice3.setFont(smallFont);
+		choice3.setFont(normalFont);
 		choiceButtonPanel.add(choice3);
 		choice3.setFocusPainted(false);
 		choice3.addActionListener(choiceHandler);
@@ -285,7 +279,7 @@ System.exit(0);
 		choice4 = new JButton("Exit");
 		choice4.setBackground(Color.blue);
 		choice4.setForeground(Color.green);
-		choice4.setFont(smallFont);
+		choice4.setFont(normalFont);
 		choiceButtonPanel.add(choice4);
 		choice4.setFocusPainted(false);
 		choice4.addActionListener(choiceHandler);
@@ -423,8 +417,8 @@ System.exit(0);
      String dialog;
      
   
-     while(lives>0 && lvl<0) { 
-     
+     do { 
+      
      for (int i = 0; i<3; i++){
          option = choices[i];
          
@@ -461,7 +455,8 @@ System.exit(0);
     	  whackPanel3.add(whackText5);
     
          String answerr = JOptionPane.showInputDialog("Please Enter you're answer:");
-      	 answer = (int) Double.parseDouble(answerr);
+      	 answer = getInt( answerr); 
+      	 Double.parseDouble(answerr);
       	
 	   
 	   
@@ -530,8 +525,10 @@ System.exit(0);
     	  
          
     	  
-    	         String answerrr = JOptionPane.showInputDialog("Please Enter you're answer:");
-    	      	 answer = (int) Double.parseDouble(answerrr);
+    	  String answerrr = JOptionPane.showInputDialog("Please Enter you're answer:");
+       	 answer = getInt( answerrr); 
+       	 Double.parseDouble(answerrr);
+    	      			 
     	      	
     		       
     	      	
@@ -593,9 +590,10 @@ System.exit(0);
     	  whackPanel7.add(whackText9);
     	  
     	  
-    	         String answerrrr = JOptionPane.showInputDialog("Please Enter you're answer:");
-    	      	 answer = (int) Double.parseDouble(answerrrr);
-    	      	
+    	 String answerrrr = JOptionPane.showInputDialog("Please Enter you're answer:");
+       	 answer = getInt( answerr); 
+       		
+       	Double.parseDouble(answerr);
     		       
     		   
     	          if (answer == 18){
@@ -610,7 +608,7 @@ System.exit(0);
     	        	  break;
     	        	 
     	        	  
-    	          }
+    	          } 
     	          if (answer >=19 || answer <=17) {
     	        	  
     	        	JOptionPane.showMessageDialog(null, "Sorry, but that was the wrong answer." , ",", JOptionPane.PLAIN_MESSAGE);
@@ -620,15 +618,22 @@ System.exit(0);
     			    //dialog = JOptionPane.showInputDialog("Try Again:");
     			    //answer = Integer.parseUnsignedInt(dialog);
     		   
-    	  break;
+    	  
       
-    	          }
+    	          	}
     	         
     	        	   	 
     	        	    
-    }    
-	}
-     }String useranswer = JOptionPane.showInputDialog(null, "Would you like to save this score to a file on your computer? (y/n)\n");
+     			}  break;  
+     	}
+     }while(lives>0 && lvl<3); 
+     lives++;
+	 lives++;
+	 lives++;
+	 lives++;
+	 lives++;
+	// triesLabelNo.setText(""+lives);
+     String useranswer = JOptionPane.showInputDialog(null, "Would you like to save this score to a file on your computer? (y/n)\n");
      useranswer = useranswer.toLowerCase();
      if (useranswer.equals("y")){
     	 
@@ -637,11 +642,12 @@ System.exit(0);
      }else {
     	 whackText.setText("Statistics not saved");
      }
-     String useranswer2 = JOptionPane.showInputDialog(null, "Do you want to play again? (y/n)\n");
-     useranswer2 = useranswer2.toLowerCase();
-     if (useranswer2.contentEquals("y")) {
-    	 
-    	// whackamoleScreen2().start();
+     String reply = JOptionPane.showInputDialog(null, "Do you want to play again? (y/n)",null, JOptionPane.YES_NO_OPTION);
+     reply = reply.toLowerCase();
+     if (reply.equals("y")) {
+    	
+    	 triesLabelNo.setText(""+lives);
+    	whackamoleScreen2();
     	 	//whackPanel.reset();
     		//playerPanel.revalidate();
      }
@@ -653,13 +659,18 @@ System.exit(0);
  
      
      
-     if (useranswer.equals("n")){
+     if (reply.equals("n")){
     	 whackText.setText("Statistics not saved.");
     	 
-    	 int reply = JOptionPane.showConfirmDialog(null, "Do you want to play again?",null, JOptionPane.YES_NO_OPTION);
-         if (reply == JOptionPane.YES_OPTION) {
+    	 int reply2 = JOptionPane.showConfirmDialog(null, "Do you want to play again?",null, JOptionPane.YES_NO_OPTION);
+         if (reply2 == JOptionPane.YES_OPTION) {
         	 
-        	
+        	 whackamoleScreen2();
+        	 lives++;
+        	 lives++;
+        	 lives++;
+        
+        	 triesLabelNo.setText(""+lives);
              
          }
          else {
@@ -671,179 +682,8 @@ System.exit(0);
      }
 	
      
-	/*
-	
-	for (int i = 0; i<3; i++){
-	    option = choices[i];
-	}
-	if(option== 1) {
-		
-	lvlLabelNo.setVisible(false);
-	triesLabelNo.setVisible(false);
-	
-		
-		whackText2= new JTextArea(
-	    mole1[0] + " , " + mole1[1] + ", " + mole1[2] + " \n" 
-	   +mole1[3] + " , " + mole1[4] + ", " + mole1[5] + " \n" 
-	   +mole1[6] + "  , " + mole1[7] + " , " + mole1[8] );
-		whackText2.setBounds(100,300,600,200);
-		whackText2.setBackground(Color.black);
-		whackText2.setForeground(Color.white);
-		whackText2.setFont(gameFont);
-		whackText2.setLineWrap(true);
-		whackPanel2.add(whackText2);
-	
-	    
-	whackText3= new JTextArea ("The Prime Number is: 3 Please enter the number in the above array which is a multiple of 3");
-	whackText3.setBounds(100,300,600,200);
-	whackText3.setBackground(Color.black);
-	whackText3.setForeground(Color.white);
-	whackText3.setFont(normalFont);
-	whackText3.setLineWrap(true);
-	whackPanel3.add(whackText3);
-	
-	while(lives>0) {
-	
-	String answerr = JOptionPane.showInputDialog("Please Enter you're answer:");
-	
-	double answerrr = Double.parseDouble(answerr);
-	
-
-	    
 	
 	
-	   if (answerrr == 42){
-	    	
-		    JOptionPane.showMessageDialog(null, "You have entered:",+answerrr+ "Good job!", JOptionPane.PLAIN_MESSAGE);
-		       
-		    lvl++;
-		    
-		    whackPanel2.repaint();
-		    whackPanel3.repaint();
-		    whackText3.repaint();
-		    whackText2.repaint();
-		    
-	   }
-	   
-	   else {
-		   JOptionPane.showMessageDialog(null, "Sorry, but that was the wrong answer." , ",", JOptionPane.PLAIN_MESSAGE);
-		    lives--;
-		    JOptionPane.showMessageDialog(null, "Lives Left :" +lives, ",", JOptionPane.PLAIN_MESSAGE);
-		    dialog = JOptionPane.showInputDialog("Try Again:");
-		    answer = Integer.parseUnsignedInt(dialog);
-		  playerPanel.updateUI();
-	   }
-	
-	}
-	}
-	
-	
-	
-	 if(option==2) {
-		
-		lvlLabelNo.setVisible(false);
-		triesLabelNo.setVisible(false);
-		
-			
-			whackText2= new JTextArea(
-		    mole1[0] + " , " + mole1[1] + ", " + mole1[2] + " \n" 
-	       +mole1[3] + " , " + mole1[4] + ", " + mole1[5] + " \n" 
-	       +mole1[6] + "  , " + mole1[7] + " , " + mole1[8] );
-			whackText2.setBounds(100,300,600,200);
-			whackText2.setBackground(Color.black);
-			whackText2.setForeground(Color.white);
-			whackText2.setFont(gameFont);
-			whackText2.setLineWrap(true);
-			whackPanel2.add(whackText2);
-		
-	        
-		whackText3= new JTextArea ("The Prime Number is: 3 Please enter the number in the above array which is a multiple of 3");
-		whackText3.setBounds(100,300,600,200);
-		whackText3.setBackground(Color.black);
-		whackText3.setForeground(Color.white);
-		whackText3.setFont(normalFont);
-		whackText3.setLineWrap(true);
-		whackPanel3.add(whackText3);
-		
-		 dialog = JOptionPane.showInputDialog("Please Enter you're answer:");
-	     answer = Integer.parseUnsignedInt(dialog);
-	     
-	        if (answer == 28){
-	        	
-	        JOptionPane.showMessageDialog(null, "You have entered:" +answer, "Good job!", JOptionPane.PLAIN_MESSAGE);
-	           
-	        lvl++;
-	        
-	        whackPanel2.repaint();
-	        whackPanel3.repaint();
-	        whackText3.repaint();
-	        whackText2.repaint();
-	        
-	        }
-	        else
-	        	JOptionPane.showMessageDialog(null, "Sorry, but that was the wrong answer." , ",", JOptionPane.PLAIN_MESSAGE);
-	        lives--;
-	        
-	        whackPanel2.repaint();
-	        whackPanel3.repaint();
-	        whackText3.repaint();
-	        whackText2.repaint();
-	        
-	        JOptionPane.showMessageDialog(null, "Lives Left :" +lives, ",", JOptionPane.PLAIN_MESSAGE);
-	}
-	else if(option==3) {
-		
-		lvlLabelNo.setVisible(false);
-		triesLabelNo.setVisible(false);
-		
-			
-			whackText2= new JTextArea(
-		    mole1[0] + " , " + mole1[1] + ", " + mole1[2] + " \n" 
-	       +mole1[3] + " , " + mole1[4] + ", " + mole1[5] + " \n" 
-	       +mole1[6] + "  , " + mole1[7] + " , " + mole1[8] );
-			whackText2.setBounds(100,300,600,200);
-			whackText2.setBackground(Color.black);
-			whackText2.setForeground(Color.white);
-			whackText2.setFont(gameFont);
-			whackText2.setLineWrap(true);
-			whackPanel2.add(whackText2);
-		
-	        
-		whackText3= new JTextArea ("The Prime Number is: 3 Please enter the number in the above array which is a multiple of 3");
-		whackText3.setBounds(100,300,600,200);
-		whackText3.setBackground(Color.black);
-		whackText3.setForeground(Color.white);
-		whackText3.setFont(normalFont);
-		whackText3.setLineWrap(true);
-		whackPanel3.add(whackText3);
-		
-		 dialog = JOptionPane.showInputDialog("Please Enter you're answer:");
-	     answer = Integer.parseUnsignedInt(dialog);
-	     
-	        if (answer == 18){
-	        	
-	        JOptionPane.showMessageDialog(null, "You have entered:  " +answer, "Good job!", JOptionPane.PLAIN_MESSAGE);
-	           
-	        lvl++;
-	        whackPanel2.repaint();
-	        whackPanel3.repaint();
-	        whackText3.repaint();
-	        whackText2.repaint();
-	        
-	        
-	        
-	        }
-	        else
-	        	JOptionPane.showMessageDialog(null, "Sorry, but that was the wrong answer.", ",", JOptionPane.PLAIN_MESSAGE);
-	        lives--;
-	        whackPanel2.repaint();
-	        whackPanel3.repaint();
-	        whackText3.repaint();
-	        whackText2.repaint();
-	        
-	        
-	        JOptionPane.showMessageDialog(null, "Lives Left :" +lives, ",", JOptionPane.PLAIN_MESSAGE);
-	        */
 	
 		
 	
@@ -1350,7 +1190,7 @@ case "exitR": System.exit(0);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		// 
 		
 	}
 	
@@ -1373,7 +1213,7 @@ public static double secToMin(int d){
 public  void saveToWFile(int score, String name)  throws IOException{
   FileWriter fwriter = new FileWriter("Statistics.txt", true);
   PrintWriter statFile = new PrintWriter(fwriter);
-  statFile.println(name + "'s Wack-A-Mole Game on " + getDate() + " at " + getTime() + " Score: " + score + "%  \n");
+  statFile.println(name + "'s Wack-A-Mole Game on " + getDate() + " at " + getTime() + " Score: \t" + score + "%  \n");
   statFile.close();
 }
 
@@ -1381,7 +1221,7 @@ public  void saveToWFile(int score, String name)  throws IOException{
 public  void saveToRFile(int score, String name)  throws IOException{
   FileWriter fwriter = new FileWriter("Statistics.txt", true);
   PrintWriter statFile = new PrintWriter(fwriter);
-  statFile.println(name + "'s Ride Time's Game on " + getDate() + " at " + getTime() + " Score: " + score + "%  \n");
+  statFile.println(name + "'s Ride Time's Game on " + getDate() + " at " + getTime() + " Score: \t" + score + "%  \n");
   statFile.close();
 }
 
@@ -1406,6 +1246,14 @@ public  String getTime(){
   }
   return time;
 }
+public static int getInt(String answerr){
+    System.out.print(answerr);
+    while(!input.hasNextInt()){
+      input.next();
+      System.out.println("Not an integer! Try again");
+    }
+    return input.nextInt();
+  }
 //helper method which grabs current date for use in statistics file
 public String getDate(){
   String date = "" + LocalDateTime.now();
