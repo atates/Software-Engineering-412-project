@@ -1,10 +1,4 @@
-/**
- 
- *
- * Program Plays a Whack-a-Mole style game via a GUI. Relies upon the Creature sub-class of JButton to facilitate the interaction between the player and 
- * the moles, called creatures in the code for re-usability. The game offers the user the option to play again or end the program after each attempt to beat the game. 
- * 
- */
+
 
 import javax.swing.*;
 
@@ -392,7 +386,7 @@ System.exit(0);
 	
 	playerPanel2=new JPanel();
 	playerPanel2.setBounds(100,15,600,50);
-	playerPanel2.setBackground(Color.red);
+	playerPanel2.setBackground(Color.black);
 	playerPanel2.setLayout(new GridLayout(1,4));
 	con.add(playerPanel2);
 	
@@ -419,13 +413,13 @@ System.exit(0);
         case 1: 
         	whackPanel2= new JPanel();
         	whackPanel2.setBounds(100, 60, 600, 270);
-        	whackPanel2.setBackground(Color.blue);
+        	whackPanel2.setBackground(Color.black);
         	whackPanel2.setVisible(true);
         	con.add(whackPanel2);
         	
         	whackPanel3= new JPanel();
         	whackPanel3.setBounds(100,400,600,200);
-        	whackPanel3.setBackground(Color.yellow);
+        	whackPanel3.setBackground(Color.black);
         	whackPanel3.setVisible(true);
         	con.add(whackPanel3);
         	
@@ -433,15 +427,15 @@ System.exit(0);
     			  					+mole1[3] + " , " + mole1[4] + ", " + mole1[5] + " \n" 
     			  					+mole1[6] + "  , " + mole1[7] + " , " + mole1[8] );
     	whackText4.setBounds(100,300,600,200);
-    	whackText4.setBackground(Color.green);
+    	whackText4.setBackground(Color.black);
     	whackText4.setForeground(Color.white);
     	whackText4.setFont(gameFont);
     	whackText4.setLineWrap(true);
     		whackPanel2.add(whackText4);
     	  whackText5= new JTextArea ("The Prime Number is: 3 \n\n Please enter the number in the above array which is a multiple of 3");
     	  whackText5.setBounds(100,200,600,200);
-    	  whackText5.setBackground(Color.red);
-    	  whackText5.setForeground(Color.black);
+    	  whackText5.setBackground(Color.black);
+    	  whackText5.setForeground(Color.white);
     	  whackText5.setFont(normalFont);
     	  whackText5.setLineWrap(true);
     	  whackPanel3.add(whackText5);
@@ -455,6 +449,7 @@ System.exit(0);
         	  JOptionPane.showInternalConfirmDialog(null, "You have entered: "+answer,"Great Job!", JOptionPane.WARNING_MESSAGE);
         	  score++;
         	  lvl++;
+        	  lvlLabelNo.setText(""+lvl);
         	  whackText4.setText(null);
         	  whackText5.setText(null);
         	  whackPanel2.setVisible(false);
@@ -471,7 +466,8 @@ System.exit(0);
         	  
         	JOptionPane.showMessageDialog(null, "Sorry, but that was the wrong answer." , ",", JOptionPane.PLAIN_MESSAGE);
 		    lives--;
-		    JOptionPane.showMessageDialog(null, "Lives Left :" +lives, ",", JOptionPane.PLAIN_MESSAGE);
+		    triesLabelNo.setText(""+lives);
+		    JOptionPane.showMessageDialog(null, "Lives Left :" +lives, "Whoops!", JOptionPane.PLAIN_MESSAGE);
 		    //dialog = JOptionPane.showInputDialog("Try Again:");
 		    //answer = Integer.parseUnsignedInt(dialog);
 		    break;
@@ -485,13 +481,13 @@ System.exit(0);
         	
         	whackPanel4= new JPanel();
         	whackPanel4.setBounds(100, 60, 600, 270);
-        	whackPanel4.setBackground(Color.blue);
+        	whackPanel4.setBackground(Color.black);
         	whackPanel4.setVisible(true);
         	con.add(whackPanel4);
         	
         	whackPanel5= new JPanel();
         	whackPanel5.setBounds(100,400,600,200);
-        	whackPanel5.setBackground(Color.blue);
+        	whackPanel5.setBackground(Color.black);
         	whackPanel5.setVisible(true);
         	con.add(whackPanel5);
         	
@@ -499,14 +495,14 @@ System.exit(0);
   					+mole2[3] + " , " + mole2[4] + ", " + mole2[5] + " \n" 
   					+mole2[6] + "  , " + mole2[7] + " , " + mole2[8] );
     		whackText6.setBounds(100,300,600,200);
-    		whackText6.setBackground(Color.blue);
+    		whackText6.setBackground(Color.black);
     		whackText6.setForeground(Color.white);
     		whackText6.setFont(gameFont);
     		whackText6.setLineWrap(true);
     		whackPanel4.add(whackText6);
-    	  whackText7= new JTextArea ("The Prime Number is: 7 \n\n Please enter the number in the above array which is a multiple of 3");
+    	  whackText7= new JTextArea ("The Prime Number is: 7 \n\n Please enter the number in the above array which is a multiple of 7");
     	  whackText7.setBounds(10,10,600,200);
-    	  whackText7.setBackground(Color.blue);
+    	  whackText7.setBackground(Color.black);
     	  whackText7.setForeground(Color.white);
     	  whackText7.setFont(normalFont);
     	  whackText7.setLineWrap(true);
@@ -524,6 +520,7 @@ System.exit(0);
     	        	  JOptionPane.showInternalConfirmDialog(null, "You have entered: "+answer,"Great Job!", JOptionPane.INFORMATION_MESSAGE);
     	        	  score++;
     	        	  lvl++;
+    	        	  lvlLabelNo.setText(""+lvl);
     	        	  whackText6.setText(null);
     	        	  whackText7.setText(null);
     	        	  whackPanel4.setVisible(false);
@@ -536,7 +533,8 @@ System.exit(0);
     	        	  
     	        	JOptionPane.showMessageDialog(null, "Sorry, but that was the wrong answer." , ",", JOptionPane.PLAIN_MESSAGE);
     			    lives--;
-    			    JOptionPane.showMessageDialog(null, "Lives Left :" +lives, ",", JOptionPane.PLAIN_MESSAGE);
+    			    triesLabelNo.setText(""+lives);
+    			    JOptionPane.showMessageDialog(null, "Lives Left :" +lives, "Whoops!", JOptionPane.PLAIN_MESSAGE);
     			    //dialog = JOptionPane.showInputDialog("Try Again:");
     			    //answer = Integer.parseUnsignedInt(dialog);
      break;
@@ -547,13 +545,13 @@ System.exit(0);
 	case 3: option = 3;
 	whackPanel6= new JPanel();
 	whackPanel6.setBounds(100, 60, 600, 270);
-	whackPanel6.setBackground(Color.red);
+	whackPanel6.setBackground(Color.black);
 	whackPanel6.setVisible(true);
 	con.add(whackPanel6);
 	
 	whackPanel7= new JPanel();
 	whackPanel7.setBounds(100,400,600,200);
-	whackPanel7.setBackground(Color.red);
+	whackPanel7.setBackground(Color.black);
 	whackPanel7.setVisible(true);
 	con.add(whackPanel7);
 	
@@ -561,14 +559,14 @@ System.exit(0);
 				+mole3[3] + " , " + mole3[4] + ", " + mole3[5] + " \n" 
 				+mole3[6] + "  , " + mole3[7] + " , " + mole3[8] );
     		whackText8.setBounds(100,300,600,200);
-    		whackText8.setBackground(Color.red);
+    		whackText8.setBackground(Color.black);
     		whackText8.setForeground(Color.white);
     		whackText8.setFont(gameFont);
     		whackText8.setLineWrap(true);
     		whackPanel6.add(whackText8);
     	  whackText9= new JTextArea ("The Prime Number is: 6 \n\n Please enter the number in the above array which is a multiple of 6");
     	  whackText9.setBounds(10,10,600,200);
-    	  whackText9.setBackground(Color.red);
+    	  whackText9.setBackground(Color.black);
     	  whackText9.setForeground(Color.white);
     	  whackText9.setFont(normalFont);
     	  whackText9.setLineWrap(true);
@@ -584,6 +582,7 @@ System.exit(0);
     	        	  JOptionPane.showInternalConfirmDialog(null, "You have entered: "+answer,"Great Job!", JOptionPane.INFORMATION_MESSAGE);
     	        	  score++;
     	        	  lvl++;
+    	        	  lvlLabelNo.setText(""+lvl);
     	        	  whackText8.setText(null);
     	        	  whackText9.setText(null);
     	        	  whackPanel6.setVisible(false);
@@ -596,7 +595,8 @@ System.exit(0);
     	        	  
     	        	JOptionPane.showMessageDialog(null, "Sorry, but that was the wrong answer." , ",", JOptionPane.PLAIN_MESSAGE);
     			    lives--;
-    			    JOptionPane.showMessageDialog(null, "Lives Left :" +lives, ",", JOptionPane.PLAIN_MESSAGE);
+    			    triesLabelNo.setText(""+lives);
+    			    JOptionPane.showMessageDialog(null, "Lives Left :" +lives, "Whoops!", JOptionPane.PLAIN_MESSAGE);
     			    //dialog = JOptionPane.showInputDialog("Try Again:");
     			    //answer = Integer.parseUnsignedInt(dialog);
     		   
