@@ -1,4 +1,10 @@
-
+/**
+ 
+ *
+ * Program Plays a Whack-a-Mole style game via a GUI. Relies upon the Creature sub-class of JButton to facilitate the interaction between the player and 
+ * the moles, called creatures in the code for re-usability. The game offers the user the option to play again or end the program after each attempt to beat the game. 
+ * 
+ */
 
 import javax.swing.*;
 
@@ -231,12 +237,12 @@ System.exit(0);
 		
 		mainTextPanel=new JPanel();
 		mainTextPanel.setBounds(140, 100, 600, 250);
-		mainTextPanel.setBackground(Color.red);
+		mainTextPanel.setBackground(Color.black);
 		con.add(mainTextPanel);
 		
 		mainTextArea= new JTextArea(" Welcome to the US of Parks! \n\n A healthy way to game! \n\n Please select a menu option:");
 		mainTextArea.setBounds(140,100,600,250);
-		mainTextArea.setBackground(Color.white);
+		mainTextArea.setBackground(Color.black);
 		mainTextArea.setForeground(Color.green);
 		mainTextArea.setFont(mediumFont);
 		mainTextArea.setLineWrap(true);
@@ -300,17 +306,14 @@ System.exit(0);
 		choiceButtonPanel.setVisible(false);
 		
 		whackPanel= new JPanel();
-		whackPanel.setBounds(100, 100, 600, 250);
+		whackPanel.setBounds(50, 100, 700, 250);
 		whackPanel.setBackground(Color.black);
 		con.add(whackPanel);
 		
-		 String name = JOptionPane.showInputDialog(null, "Please Enter your full name before continuing:" , "Attention:", JOptionPane.INFORMATION_MESSAGE);
-		 JOptionPane.showMessageDialog(null, "Thank You" , ":)", JOptionPane.PLAIN_MESSAGE);
-		
-		whackText= new JTextArea(" Welcome to Whack-A-Mole");
-		whackText.setBounds(100,100,600,250);
+		whackText= new JTextArea("     Welcome to Whack-A-Mole");
+		whackText.setBounds(50,100,600,350);
 		whackText.setBackground(Color.black);
-		whackText.setForeground(Color.white);
+		whackText.setForeground(Color.green);
 		whackText.setFont(mediumFont);
 		whackText.setLineWrap(true);
 		whackText.setEditable(false);
@@ -318,7 +321,7 @@ System.exit(0);
 		
 		triesLabel=new JLabel("Lives Left:");
 		triesLabel.setFont(normalFont);
-		triesLabel.setForeground(Color.white);
+		triesLabel.setForeground(Color.blue);
 		playerPanel.add(triesLabel);
 		
 		triesLabelNo= new JLabel(""+lives);
@@ -328,12 +331,12 @@ System.exit(0);
 		
 		lvlLabel= new JLabel("Level: ");
 		lvlLabel.setFont(normalFont);
-		lvlLabel.setForeground(Color.white);
+		lvlLabel.setForeground(Color.red);
 		playerPanel.add(lvlLabel);
 		
 		lvlLabelNo= new JLabel(""+lvl);
 		lvlLabelNo.setFont(normalFont);
-		lvlLabelNo.setForeground(Color.white);
+		lvlLabelNo.setForeground(Color.green);
 		playerPanel.add(lvlLabelNo);
 		
 		whackPan= new JPanel();
@@ -345,14 +348,14 @@ System.exit(0);
 		con.add(whackPan);
 		
 		returnWhack = new JButton( "Return" );
-		returnWhack.setBackground(Color.black);
-		returnWhack.setForeground(Color.white);
-		returnWhack.setFont(smallFont);
+		returnWhack.setBackground(Color.blue);
+		returnWhack.setForeground(Color.yellow);
+		returnWhack.setFont(normalFont);
 		
 		continueWhack = new JButton( "Continue" );
-		continueWhack.setBackground(Color.black);
-		continueWhack.setForeground(Color.white);
-		continueWhack.setFont(smallFont);
+		continueWhack.setBackground(Color.green);
+		continueWhack.setForeground(Color.red);
+		continueWhack.setFont(normalFont);
 		
 		whackPan.add(returnWhack);
 		whackPan.add(continueWhack);
@@ -372,8 +375,24 @@ System.exit(0);
 	}
 	
 	
-	public void whackamoleScreen2(){
-	
+	public void whackamoleScreen2() throws IOException{
+		
+		whackText.setVisible(false);
+		whackPan.setVisible(false);
+		whackText9= new JTextArea("       Please, Follow The Prompt \n\n This will be used to save your scores");
+		whackText9.setBounds(50,100,700,250);
+		whackText9.setBackground(Color.black);
+		whackText9.setForeground(Color.yellow);
+		whackText9.setFont(mediumFont);
+		whackText9.setLineWrap(true);
+		whackText9.setEditable(false);
+		whackPanel.add(whackText9);
+		
+		 String name = JOptionPane.showInputDialog(null, "Please Enter your full name before continuing:" , "Attention:", JOptionPane.INFORMATION_MESSAGE);
+		 JOptionPane.showMessageDialog(null, "Thank You" , ":)", JOptionPane.PLAIN_MESSAGE);
+		
+		 whackText9.setVisible(false);
+		 
 	lvlLabelNo.setVisible(true);
 	triesLabelNo.setVisible(true);
 	playerPanel.setVisible(true);
@@ -400,10 +419,11 @@ System.exit(0);
      int score = 0;
      int option;
      int answer=0;
-   
+     int rideScore=0;
      String dialog;
      
-     while(lives>0) { 
+  
+     while(lives>0 && lvl<0) { 
      
      for (int i = 0; i<3; i++){
          option = choices[i];
@@ -603,10 +623,20 @@ System.exit(0);
     	  break;
       
     	          }
+    	         
+    	        	   	 
+    	        	    
     }    
 	}
+     }String useranswer = JOptionPane.showInputDialog(null, "Would you like to save this score to a file on your computer? (y/n)\n");
+     useranswer = useranswer.toLowerCase();
+     if (useranswer.equals("y")){
+     saveToRFile(rideScore, name);
+     whackText.setText("Statistics successfully saved. Goodbye!");
+     int n = JOptionPane.showConfirmDialog(null, "Do you want to play again?",null, JOptionPane.YES_NO_OPTION);
      }
-     }
+	}
+     
 	/*
 	
 	for (int i = 0; i<3; i++){
@@ -1175,7 +1205,12 @@ public class TitleScreenHandler implements ActionListener{
 				
 case "continueW": 
 				
-	whackamoleScreen2(); break;
+				try {
+					whackamoleScreen2();
+				} catch (IOException e2) {
+					
+					e2.printStackTrace();
+				} break;
 	
 				
 case "continueR": 
